@@ -10,21 +10,13 @@ gallaryContainer.insertAdjacentHTML('beforeend', items);
 
 function createGallaryItems(galleryItems) {
   return galleryItems.map(({preview, original, description}) => {
-        return `<a class="gallery__item" href="${original}">
+    return `<li><a class="gallery__item" href="${original}">
   <img class="gallery__image" src="${preview}" alt="${description}" />
-</a>`;
+</a></li>`;
   }).join("")  
 }
 
-gallaryContainer.addEventListener('click', onGallaryContainerClickHandler)
-
-function onGallaryContainerClickHandler (event) {
-  event.preventDefault();
-
-  const bigImg = new SimpleLightbox('.gallery a');
-  bigImg.next();
-
-//   $('.gallery a').on('open.simplelightbox', function(){
-//     captionsData: "alt" = event.target.description;
-// })
-}
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
